@@ -4,18 +4,26 @@ The purpose of this software is so that students can
 2. Practice best practices in 'get_column_stats.py'
 3. Practice testing code using bash script
 
-Though the actual function of these files is to:
+The actual function of these files is to:
 1. Calculate mean and standard deviation of tab separated input file
 2. Run tests through bash script
 
-#File instruction
-For 'style.py' file, you will need to install pycodestyle
-'''pip install pycodestyle'''
+# File instruction
+To test for python Pep8 style, you will need to:
+1. Install pycodestyle
+2. Run pycodestyle on desired file (in this case it is 'style.py')
+```
+pip install pycodestyle
+pycodestyle style.py
+```
 
-For 'get_column_stats.py' file, you can run it by inputing 'file_name' and 'column_number'
-'''
-python get_column_stats.py --file_name --column_number
-'''
+To calculate the mean and standard deviation of a tab separated input file, you will need to:
+1. Have python installed
+2. In command line, input the file name and column number you wish to run calculations on (example shown below)
+    (note that the first column of a file is '0' in python3)
+```
+python get_column_stats.py --file_name test_file.txt --column_number 0
+```
 
-To run test on 'get_column_stats.py', you can run the 'basic_test.sh' file
-'''bash basic_test.sh'''
+To run test on 'get_column_stats.py', you can run the 'basic_test.sh' file:
+```bash basic_test.sh```
