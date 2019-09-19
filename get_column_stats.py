@@ -8,55 +8,53 @@ import math
 import argparse
 
 #define required arguments
-parser = argparse.ArgumentParser(description='column mean/std dev')
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='column mean/std dev')
 
-parser.add_argument('--file_name',
-                    type=str,
-                    help='Name of file',
-                    required=True)
+    parser.add_argument('file_name',
+                        type=str,
+                        help='Name of file')
 
-parser.add_argument('--column_number',
-                    type=str,
-                    help='The column number',
-                    required=True)
+    parser.add_argument('column_number',
+                        type=int,
+                        help='The column number')
 
-args = parser.parse_args()
-print(args.file_name, args.column_num)
+    args = parser.parse_args()
+    print(args.file_name, args.column_number)
 
-file_name = args.file_name
-col_num = args.column_num
+    file_name = args.file_name
+    col_num = args.column_number
 
-#Validate correct file name with access permission
-file = None
-try:
-    file = open(file_name, 'r')
-except FileNotFoundError:
-    print('Could not fine' + file_name)
-    sys.exit(1)
-except PermissionError:
-    print('Could not open' + file_name)
-    sys.exit(1)
-
-V = []
-
-#input column intergers into generator
-for col in file:
+    #Validate correct file name with access permission
     try:
-        A = [int(x) for x in col.split()]
-    except ValueError:
-        print('Check column values')
+        file = open(file_name, 'r')
+    except FileNotFoundError:
+        print('Could not fine' + file_name)
         sys.exit(1)
-    try:
-        V.append(A[col_num])
-    except IndexError:
-        print('Problems with column number')
+    except PermissionError:
+        print('Could not open' + file_name)
         sys.exit(1)
 
-#calculate mean
-mean = sum(V)/len(V)
+    V = []
 
-#calculate standard deviation
-stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+    #input column intergers into generator
+    for col in file:
+        try:
+            A = [int(x) for x in col.split()]
+        except ValueError:
+            print('Check column values')
+            sys.exit(1)
+        try:
+            V.append(int(A[col_num]))
+        except IndexError:
+            print('Problems with column number')
+            sys.exit(1)
 
-print('mean:', mean)
-print('stdev:', stdev)
+    #calculate mean
+    mean = sum(V)/len(V)
+
+    #calculate standard deviation
+    stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
+
+    print('mean:', mean)
+    print('stdev:', stdev)
