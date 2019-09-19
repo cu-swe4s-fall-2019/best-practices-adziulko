@@ -1,21 +1,20 @@
-'''
-Input: tab separated file of integers in defined column #
-Output: mean and standard deviation of the integers in column
-'''
+
+# Input: tab separated file of integers in defined column #
+# Output: mean and standard deviation of the integers in column
 
 import sys
 import math
 import argparse
 
-#define required arguments
+# define required arguments
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='column mean/std dev')
 
-    parser.add_argument('file_name',
+    parser.add_argument('--file_name',
                         type=str,
                         help='Name of file')
 
-    parser.add_argument('column_number',
+    parser.add_argument('--column_number',
                         type=int,
                         help='The column number')
 
@@ -25,7 +24,7 @@ if __name__ == '__main__':
     file_name = args.file_name
     col_num = args.column_number
 
-    #Validate correct file name with access permission
+    # Validate correct file name with access permission
     try:
         file = open(file_name, 'r')
     except FileNotFoundError:
@@ -37,7 +36,7 @@ if __name__ == '__main__':
 
     V = []
 
-    #input column intergers into generator
+    # input column intergers into generator
     for col in file:
         try:
             A = [int(x) for x in col.split()]
@@ -50,10 +49,10 @@ if __name__ == '__main__':
             print('Problems with column number')
             sys.exit(1)
 
-    #calculate mean
+    # calculate mean
     mean = sum(V)/len(V)
 
-    #calculate standard deviation
+    # calculate standard deviation
     stdev = math.sqrt(sum([(mean-x)**2 for x in V]) / len(V))
 
     print('mean:', mean)

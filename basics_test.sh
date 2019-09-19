@@ -1,15 +1,13 @@
-#!/bin/#!/usr/bin/env bash
+#!/bin/bash
 
-chmod +x run.sh
-
-conda activate swe4s
-
-test -e ssshtest || wget -qhttps://raw.githubusercontent.com/ryanlayer/ssshtest/master/ssshtest
-. ssshtest
+chmod +x basics_test.sh
 
 (for i in 'seq 1 100'; do
     echo -e "$RANDOM\t$RANDOM\t$RANDOM\t$RANDOM\t$RANDOM";
 done )> data.txt
+
+source ssshtest
+
 
 run basic_test python get_column_stats.py --file_name data.txt --column_number 2
 assert_in_stdout 2
@@ -25,7 +23,7 @@ pycodestyle get_column_stats.py
     echo -e "$RANDOM\t$RANDOM\t$RANDOM\t$RANDOM\t$RANDOM";
 done )> data.txt
 
-python get_column_stats.py --file_name data.txt --col_nummber 2
+python get_column_stats.py --file_name data.txt --column_number 2
 
 
 V=1
@@ -33,4 +31,4 @@ V=1
     echo -e "$V\t$V\t$V\t$V\t$V";
 done )> data.txt
 
-python get_column_stats.py --file_name data.txt --col_number 2
+python get_column_stats.py --file_name data.txt --column_number 2
