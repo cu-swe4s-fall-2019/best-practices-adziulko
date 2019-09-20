@@ -20,6 +20,16 @@ def mean(V):
         Arithmetic mean of the values in V
 
     '''
+    try:
+        if V is None:
+            return None
+
+        if len(V) == 0:
+            return None
+
+    except TypeError:
+        print('Not a list')
+        raise TypeError
 
     m = sum(V)/len(V)
     return m
@@ -38,6 +48,14 @@ def stdev(V):
         Standard deviation of the values in V
 
 '''
+    try:
+        if V is None:
+            return None
+
+    except TypeError:
+        print('Not a list')
+        raise TypeError
+
     sd = math.sqrt(sum([(mean(V)-x)**2 for x in V]) / len(V))
     return sd
 

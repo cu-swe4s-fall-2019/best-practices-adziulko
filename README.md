@@ -1,11 +1,13 @@
-# best-practices
+# best-practices | Testing
 The purpose of this software is so that students can
 1. Practice python Pep8 standards using 'pycodestyle'
 2. Practice best practices in 'get_column_stats.py'
 3. Practice testing code using bash script
+4. Become familiar with frameworks for functional tests and unit tests. Learn to develop tests that cover normal and error-producing behavior
 
 The actual function of these files is to:
 1. Calculate mean and standard deviation of tab separated input file
+    - And to run it well by testing many types errors and solving for those errors
 2. Run tests through bash script
 
 # File instruction
