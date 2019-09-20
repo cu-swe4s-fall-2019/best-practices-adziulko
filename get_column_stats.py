@@ -6,6 +6,41 @@ import sys
 import math
 import argparse
 
+def mean(V):
+    '''Compute the mean of an array. Expects a non-empty array.
+
+    Parameters
+    ----------
+    V : list of int
+        Non-empty array containing numbers whose mean is desired.
+
+    Returns
+    -------
+    m
+        Arithmetic mean of the values in V
+
+    '''
+
+    m = sum(V)/len(V)
+    return m
+
+def stdev(V):
+    '''Compute the standard deviation of an array. Expects a non-empty array.
+
+    Parameters
+    ----------
+    V : list of int
+        Non-empty array containing numbers whose standard deviation is desired.
+
+    Returns
+    -------
+    sd
+        Standard deviation of the values in V
+
+'''
+    sd = math.sqrt(sum([(mean(V)-x)**2 for x in V]) / len(V))
+    return sd
+
 # define required arguments
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='column mean/std dev')
@@ -19,7 +54,6 @@ if __name__ == '__main__':
                         help='The column number')
 
     args = parser.parse_args()
-    print(args.file_name, args.column_number)
 
     file_name = args.file_name
     col_num = args.column_number
@@ -28,7 +62,7 @@ if __name__ == '__main__':
     try:
         file = open(file_name, 'r')
     except FileNotFoundError:
-        print('Could not fine' + file_name)
+        print('Could not find' + file_name)
         sys.exit(1)
     except PermissionError:
         print('Could not open' + file_name)
